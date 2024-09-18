@@ -1,0 +1,9 @@
+html 
+    head 
+        title= title
+    body 
+        h1 FORMULARIO 
+        form(action="/submit" method="POST")
+        label(for="palabra clave") Nombre:
+        input(type="text" name="palabra clave" id="palabraClave")
+        button(type="submit") Enviar
