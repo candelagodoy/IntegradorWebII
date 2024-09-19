@@ -3,7 +3,7 @@ html
         title= title
     body 
         h1 FORMULARIO 
-        form(action="/submit" method="POST")
+        form(action="/submit" method="POST" id="form")
         label(for="keyword") Palabra clave:
         input(type="text" name="keyword" id="keyword")
         label(for="departments") Departamentos: 
@@ -15,4 +15,4 @@ html
 
         label(for="location") Ubicacion: 
         input(type="text", name="location" id="location") 
-        button(type="submit") Enviar
+        button(type="submit" id="mybutton") Enviar

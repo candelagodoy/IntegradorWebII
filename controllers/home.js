@@ -1,8 +1,11 @@
 const { response, request } = require('express');
 
+const URL = 'https://collectionapi.metmuseum.org/public/collection/v1';
+
+
 const selec = async (req,res) => {
     try{
-        const response = await fetch ('https://collectionapi.metmuseum.org/public/collection/v1/departments')
+        const response = await fetch (`${URL}/departments`)
         const data = await response.json() 
         if (data.departments) {
             res.render('../views/home.pug', { departments: data.departments });
