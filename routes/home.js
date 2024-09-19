@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const { consulta } = require('../controllers/home');
+const { selec } = require('../controllers/home');
 
 const router = Router();
 
-router.get('/', consulta);
+router.get('/', selec);
 
 
 

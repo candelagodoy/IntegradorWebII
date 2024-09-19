@@ -1,5 +1,21 @@
 const { response, request } = require('express');
 
+const selec = async (req,res) => {
+    try{
+        const response = await fetch ('https://collectionapi.metmuseum.org/public/collection/v1/departments')
+        const data = await response.json() 
+        if (data.departments) {
+            res.render('../views/home.pug', { departments: data.departments });
+        } else {
+            res.render('../views/home.pug', { departments: [] });
+        }
+
+    }
+    catch(error){
+        console.error('Error en la solicitud:', error);
+    }
+}
+
 
 const prueba = async (request,res) => {
     res.send("bienvenido");
@@ -14,5 +30,6 @@ const consulta= async (req,res) => {
 module.exports = {
 
     prueba,
-    consulta
+    consulta,
+    selec
 }

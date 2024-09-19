@@ -4,6 +4,15 @@ html
     body 
         h1 FORMULARIO 
         form(action="/submit" method="POST")
-        label(for="palabra clave") Nombre:
-        input(type="text" name="palabra clave" id="palabraClave")
+        label(for="keyword") Palabra clave:
+        input(type="text" name="keyword" id="keyword")
+        label(for="departments") Departamentos: 
+        select(name="departments" id="departments") 
+            option(value="fijo")
+            each department in departments
+                
+                option(value=department.departmentId) #{department.displayName}
+
+        label(for="location") Ubicacion: 
+        input(type="text", name="location" id="location") 
         button(type="submit") Enviar
