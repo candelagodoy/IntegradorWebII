@@ -19,6 +19,10 @@ const selec = async (req,res) => {
     }
 }
 
+const objetos= async(req, res) => {
+    const data = ""
+}
+
 
 const prueba = async (request,res) => {
     res.send("bienvenido");
