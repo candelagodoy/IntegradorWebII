@@ -1,9 +1,14 @@
 const { Router } = require('express');
-const { selec } = require('../controllers/home');
+const { selec, test, busqueda,imagenesAdicionales,paginado } = require('../controllers/home');
 
 const router = Router();
 
-router.get('/', selec);
+
+
+router.get('/', test)
+router.get('/detalles/:id',imagenesAdicionales)
+
+router.post('/submit',busqueda)
 
 
 

@@ -1,0 +1,86 @@
+.contenedor {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: 100vh; 
+    margin: 0; 
+    
+}
+#form{
+    display:grid;
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 80px;
+    color:rgb(83, 85, 88);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: large;
+    border: 1px solid rgba(50, 51, 54, 0.288);
+    border-radius: 5px;
+}
+
+header{
+    display: flex;
+    min-height: 70px;
+    justify-content: center;
+    background-color: rgb(83, 85, 88);
+    align-items: center;
+    padding: 10px;
+    text-align: center; 
+}
+
+h1{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: oblique;
+    text-align: center;
+    color:rgb(174, 173, 179)
+}
+
+body{
+    background-image: url('/fondo.jpeg');
+    background-repeat: repeat;
+}
+
+.grilla{
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    padding: 20px; 
+    
+}
+
+.card {
+    background-color:rgb(174, 173, 179, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 300px;
+    margin: 20px;
+    text-align: center;
+}
+img {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 20px;
+}
+#titulo{
+    margin-top: 10px;
+    color:rgb(83, 85, 88);
+}
+#cultura{
+    color:rgb(83, 85, 88); ;
+    text-align: center;
+}
+#dinastias{
+    color:rgb(83, 85, 88); ;
+    text-align: center;
+}
+
+#imgAdicionales{
+    display: flex;
+    padding: 10px 15px;
+    background-color: rgb(83, 85, 88);
+    color:rgb(174, 173, 179);
+    border-radius: 5px;
+}
+

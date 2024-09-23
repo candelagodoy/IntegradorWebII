@@ -1,0 +1,20 @@
+html 
+    head 
+    body 
+        div(class="grilla") 
+           each datosObra in detallesObras
+                div(class="card")
+                    h2(id="titulo")= datosObra.title || 'Sin título'
+                    h4(id="cultura")= datosObra.culture || 'No posee cultura'
+                    h4(id="dinastias")= datosObra.dynasty || 'No posee dinastía'
+                    if datosObra.additionalImages && datosObra.additionalImages.length != 0
+                        button(onclick= `window.location.href='detalles/${datosObra.objectID}'`) Ver imagen adicional
+                       
+            
+        div(class="paginacion")
+            if currentPage > 1
+                a(href=`/?page=${currentPage - 1}`) Anterior
+            each i in totalPages
+                a(href=`/?page=${i + 1}`) #{i + 1}
+            if currentPage < totalPages
+                a(href=`/?page=${currentPage + 1}`) Siguiente
