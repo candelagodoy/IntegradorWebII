@@ -23,13 +23,18 @@ html
         
         div(class="grilla") 
            each datosObra in detallesObras
-                div(class="card")
+                div(class="card" 
+                id=`card-${datosObra.objectID}` 
+                datosFecha=datosObra.objectDate 
+                onmouseover=`mostrarFecha(${datosObra.objectID})` 
+                onmouseout=`ocultarFecha(${datosObra.objectID})`)
+                    p(id=`fecha-${datosObra.objectID}`) 
                     h2(id="titulo")= datosObra.title || 'Sin título'
-                    img(src=datosObra.primaryImageSmall || '/sinImagen.png', alt="" id="imagenCard")
+                    img(src=datosObra.primaryImageSmall || '/images/sinImagen.png', alt="" id="imagenCard")
                     h4(id="cultura")= datosObra.culture || 'No posee cultura'
                     h4(id="dinastias")= datosObra.dynasty || 'No posee dinastía'
                     if datosObra.additionalImages && datosObra.additionalImages.length != 0
-                        button(onclick= `window.location.href='detalles/${datosObra.objectID}'`) Ver imagen adicional
+                       button(onclick= `window.location.href='detalles/${datosObra.objectID}'`) Ver imagen adicional
 
         div(class="paginacion")
             if currentPage > 1
@@ -40,3 +45,27 @@ html
                 form(action=`/submit/?page=${currentPage + 1}` method="POST" id="form")
                     input(type="text", name="location" id="next")
                     button(type="submit" id="mybutton") Siguiente
+        script. 
+            function mostrarFecha(idObra){
+
+                const card = document.getElementById(`card-${idObra}`);
+                if(card){
+                    const date = document.getElementById(`fecha-${idObra}`)
+                    const objectDate = card.getAttribute('datosFecha');
+                    if( objectDate != "" || objectDate != null){
+                        date.innerHTML =`La fecha es : ${objectDate}` 
+                        date.style.display = 'block';
+                    }
+                    else{
+                        date.innerHTML =`Fecha desconocida` 
+                        date.style.display = 'block';
+                    }   
+                }  
+            }
+
+            function ocultarFecha(idObra){
+                const date = document.getElementById(`fecha-${idObra}`);
+                if (date) {
+                    date.style.display = 'none';
+                }
+            }

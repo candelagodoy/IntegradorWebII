@@ -4,6 +4,7 @@ const URL = 'https://collectionapi.metmuseum.org/public/collection/v1';
 const URL_SEACH = 'https://collectionapi.metmuseum.org/public/collection/v1/search'
 const URL_OBJETOS= 'https://collectionapi.metmuseum.org/public/collection/v1/objects'
 const URL_OBJETO='https://collectionapi.metmuseum.org/public/collection/v1/objects/'
+var translate = require('node-google-translate-skidz');
 
 
 const selec = async (req,res) => {
@@ -77,12 +78,45 @@ fetch(URL_OBJETOS)
             const detallesRespuestas = await Promise.all(detallesPromesas);
             const detallesObras = await Promise.all(detallesRespuestas.map(res => res.json()));
 
+            const productosTraducidos = await Promise.all(detallesObras.map(async obra =>{
+                const tituloTraducido = obra.title ? await traslateText(obra.title, 'en', 'es') : obra.title
+                const culturaTraducida = obra.culture ? await traslateText(obra.culture, 'en', 'es'): obra.culture;
+                const dinastiaTraducida = obra.dynasty ? await traslateText(obra.dynasty, 'en', 'es'): obra.dynasty;
+                const fechaTraducida = obra.objectDate ? await traslateText(obra.objectDate, 'en','es'): obra.objectDate;
+                return{
+
+                    objectID: obra.objectID,
+                    primaryImageSmall: obra.primaryImageSmall,
+                    title: tituloTraducido,
+                    culture: culturaTraducida,
+                    dynasty: dinastiaTraducida,
+                    objectDate: fechaTraducida,
+                    additionalImages: obra.additionalImages
+                }
+            }))
+
             console.log(ids+"data");
-            res.render('../views/home.pug',{departments, detallesObras, currentPage, totalPages: Math.ceil(ids.length / objectsPerPage),palabraClave, departamento, localizacion})
+            res.render('../views/home.pug',{departments, detallesObras: productosTraducidos, currentPage, totalPages: Math.ceil(ids.length / objectsPerPage),palabraClave, departamento, localizacion})
         }
         catch(error){
-            console.log("error en metodo busqueda"+error.message)
+            console.log("error en metodo busqueda "+error.message)
         } 
+    }
+
+    async function traslateText(texto, iFuente, iDestino) {
+        return new Promise((resolve,reject) =>{
+            translate({
+                text: texto,
+                source: iFuente,
+                target: iDestino
+            },function(result){
+                if(result && result.translation){
+                    resolve(result.translation);
+                }else{
+                    reject('Error en la traduccion traducir');
+                }
+            })
+        })
     }
 
     const imagenesAdicionales = async (req,res) => {
