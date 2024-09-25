@@ -1,6 +1,12 @@
 html 
     head 
+        title Adicionales
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap")
+        link(rel="stylesheet", href="/styleAdicional.css")
     body 
-        p imagenes adicionales 
-        each imagen in imagenesAd
-            img(src=imagen alt="" id="imagenAdicional")
+        div
+            button(onclick=`window.location.href='/'`) ATRAS
+            h2.archivo-black-regular Imágenes Adicionales 
+        div
+            each imagen in imagenesAd
+                img(src=imagen alt="" id="imagenAdicional")

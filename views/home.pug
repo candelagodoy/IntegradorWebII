@@ -1,25 +1,32 @@
 html 
     head 
-        title= title
+        title= Principal
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Castoro+Titling&family=Sansita+Swashed:wght@300..900&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Castoro+Titling&family=Sansita+Swashed:wght@300..900&family=Stint+Ultra+Expanded&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet")
+
+
         link(rel="stylesheet", href="/style.css")
-        script(src="/js/localStorage.js")
+     
     body 
     div(class="container")
         div(class="formulario")
             header 
-                h1 The Metropolitan Museum of Art
-            form(action="/submit" method="POST" id="form")
+                h1.archivo-black-regular The Metropolitan Museum of Art
+            form.stint-ultra-expanded-regular(action="/submit" method="POST" id="form")
                 label(for="keyword") Palabra clave:
                 input(type="text" name="keyword" id="keyword" value=palabraClave)
                 label(for="departments") Departamentos: 
                 select(name="departments" id="departments") 
-                    option(value="") Todos
+                    option(value="")
                     each department in departments
                         option(value=department.departmentId) #{department.displayName}
 
                 label(for="location") Ubicacion: 
                 input(type="text", name="location" id="location") 
-                button(type="submit" id="mybutton") Enviar
+                button.archivo-black-regular(type="submit" id="mybutton") Enviar
         
         div(class="grilla") 
            each datosObra in detallesObras
@@ -28,23 +35,21 @@ html
                 datosFecha=datosObra.objectDate 
                 onmouseover=`mostrarFecha(${datosObra.objectID})` 
                 onmouseout=`ocultarFecha(${datosObra.objectID})`)
-                    p(id=`fecha-${datosObra.objectID}`) 
-                    h2(id="titulo")= datosObra.title || 'Sin título'
+                    h2.sansita-swashed-cards(id="titulo")= datosObra.title || 'Sin título'
+                    p(class= "fecha" id=`fecha-${datosObra.objectID}`) 
                     img(src=datosObra.primaryImageSmall || '/images/sinImagen.png', alt="" id="imagenCard")
-                    h4(id="cultura")= datosObra.culture || 'No posee cultura'
-                    h4(id="dinastias")= datosObra.dynasty || 'No posee dinastía'
+                    h4.stint-ultra-expanded-regular(id="cultura")= datosObra.culture || 'No posee cultura'
+                    h4.stint-ultra-expanded-regular(id="dinastias")= datosObra.dynasty || 'No posee dinastía'
                     if datosObra.additionalImages && datosObra.additionalImages.length != 0
-                       button(onclick= `window.location.href='detalles/${datosObra.objectID}'`) Ver imagen adicional
+                        button(class="bAdicionales" onclick=`window.location.href=window.location.origin + '/detalles/${datosObra.objectID}'`) Ver imagen adicional
 
         div(class="paginacion")
             if currentPage > 1
-                a(href=`/?page=${currentPage - 1}`) Anterior
+                a(href=`/paginado?page=${currentPage - 1}`) Anterior
             each i in totalPages
-                a(href=`/?page=${i + 1}`) #{i + 1}
+                a(href=`/paginado?page=${i + 1}`) #{i + 1}
             if currentPage < totalPages
-                form(action=`/submit/?page=${currentPage + 1}` method="POST" id="form")
-                    input(type="text", name="location" id="next")
-                    button(type="submit" id="mybutton") Siguiente
+                a(href=`/paginado?page=${currentPage + 1}`) Siguiente
         script. 
             function mostrarFecha(idObra){
 
@@ -53,7 +58,7 @@ html
                     const date = document.getElementById(`fecha-${idObra}`)
                     const objectDate = card.getAttribute('datosFecha');
                     if( objectDate != "" || objectDate != null){
-                        date.innerHTML =`La fecha es : ${objectDate}` 
+                        date.innerHTML =`${objectDate}` 
                         date.style.display = 'block';
                     }
                     else{
