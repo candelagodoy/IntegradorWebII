@@ -2,7 +2,6 @@ const { response, request } = require('express');
 
 const URL = 'https://collectionapi.metmuseum.org/public/collection/v1';
 const URL_SEACH = 'https://collectionapi.metmuseum.org/public/collection/v1/search'
-const URL_OBJETOS= 'https://collectionapi.metmuseum.org/public/collection/v1/objects'
 const URL_OBJETO='https://collectionapi.metmuseum.org/public/collection/v1/objects/'
 var translate = require('node-google-translate-skidz');
 let ids = [];
@@ -20,32 +19,17 @@ const selec = async (req,res) => {
     }
 }
 
-/* function veinteObjetos(objectsIDs){
-    for(objectsID of objectsIDs){
-        fetch(URL_OBJETO+objectsIDs)
-        .then((response) => response.json())
-        .then(data => {
-            console.log(data)
-        })
-    }
-}
-
-fetch(URL_OBJETOS)
-.then((response)=>response.json())
-.then(data =>{
-    veinteObjetos(data.objectsIDs.slice(0,20));
-}) */
-
 
     const busqueda = async(req,res) =>{
 
         try{
             
-            const palabraClave = req.body.keyword || ''
-            const departamento = req.body.departments || ''
-            const localizacion = req.body.location || ''
+            const palabraClave = req.body.keyword
+            const departamento = req.body.departments
+            const localizacion = req.body.location 
+            const localizacionFormateada = localizacion.charAt(0).toUpperCase() + localizacion.slice(1).toLowerCase();
             
-            const paramLocalizacion = localizacion != "" ? `&geoLocation=${localizacion}` : ""
+            const paramLocalizacion = localizacionFormateada != "" ? `&geoLocation=${localizacionFormateada}` : ""
             const paramQ = palabraClave != "" ? `?q=${palabraClave}`: `?q=''` 
             const paramDepartamento = departamento != "" ? `&departmentId=${departamento}` : ""
 
@@ -134,7 +118,7 @@ fetch(URL_OBJETOS)
 
 
 
- const test = async (req, res) => {
+ const index = async (req, res) => {
        const departments = await selec();
        res.render('../views/home.pug', {departments, detallesObras:{},currentPage:0, totalPages:0});
         
@@ -143,7 +127,7 @@ fetch(URL_OBJETOS)
 
 module.exports = {
 
-    test,
+    index,
     busqueda,
     imagenesAdicionales,
     paginado

@@ -85,7 +85,7 @@ body{
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    max-width: 300px;
+    max-width: 250px;
     margin: 20px;
     text-align: center;
 }
@@ -102,8 +102,10 @@ img {
     width: 80%;
     height: auto;
     display: block;
-    margin: 20px;
+    margin: 20px; 
+    object-fit: cover;
 }
+
 #titulo{
     margin-top: 10px;
     color:rgb(83, 85, 88);
@@ -121,20 +123,40 @@ img {
 
 .fecha{
     border: 2px solid transparent;
-    animation: animacionBorde 3s linear infinite;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.1) ;
-    color :rgb(83, 85, 88);
-    border-style: solid;
+    background-color: rgba(233, 229, 229, 0.938) ;
+    color :rgb(78, 78, 78);
+    border-style: solid;  
+
 }
 
 .bAdicionales{
     background-color: rgba(0, 0, 0, 0.1) ;
     color :rgb(83, 85, 88);
     border-radius: 10px;
-    width: 100%;
+    width: 80%;
     height:auto;
-    
+    margin-top: auto;
+    align-self: center;
+}
+
+.paginacion {
+    text-align: center; 
+    margin-top: 20px;
+  }
+  
+.paginacion a {
+    display: inline-block;
+    padding: 10px 15px; 
+    text-decoration: none; 
+    color: white;
+    background-color:rgb(83, 85, 88);
+    border-radius: 5px;
+    margin: 0 5px; 
+  }
+  
+.paginacion a:hover {
+    background-color:rgba(133, 133, 134, 0.9);
 }
 
 .error{

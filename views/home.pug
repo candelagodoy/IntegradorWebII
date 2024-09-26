@@ -7,7 +7,7 @@ html
         link(href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Castoro+Titling&family=Sansita+Swashed:wght@300..900&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet")
         link(href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Castoro+Titling&family=Sansita+Swashed:wght@300..900&family=Stint+Ultra+Expanded&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet")
 
-        link(rel="stylesheet", href="/style.css")
+        link(rel="stylesheet", href="style/style.css")
         script(src="/js/jsCliente.js") 
     body 
     div(class="container")
@@ -28,10 +28,6 @@ html
                 button.archivo-black-regular(type="submit" id="mybutton") Enviar
                 ul(class = "error" id="listaErrores")
                 ul(class = "mensajes" id="listaMensajes")
-
-
-            
-
         
         div(class="grilla") 
            each datosObra in detallesObras
@@ -46,40 +42,17 @@ html
                     h4.stint-ultra-expanded-regular(id="cultura")= datosObra.culture || 'No posee cultura'
                     h4.stint-ultra-expanded-regular(id="dinastias")= datosObra.dynasty || 'No posee dinastía'
                     if datosObra.additionalImages && datosObra.additionalImages.length != 0
-                        button(class="bAdicionales" onclick=`window.location.href=window.location.origin + '/detalles/${datosObra.objectID}'`) Ver imagen adicional
+                        button.archivo-black-regular(class="bAdicionales" onclick=`window.location.href=window.location.origin + '/detalles/${datosObra.objectID}'`) Ver imagen adicional
 
         div(class="paginacion")
             if currentPage > 1
-                a(href=`/paginado?page=${currentPage - 1}`) Anterior
+                a.archivo-black-regular(href=`/paginado?page=${currentPage - 1}`) Anterior  
             each i in totalPages
                 a(href=`/paginado?page=${i + 1}`) #{i + 1}
             if currentPage < totalPages
-                a(href=`/paginado?page=${currentPage + 1}`) Siguiente
+                a.archivo-black-regular(href=`/paginado?page=${currentPage + 1}`) Siguiente
 
                 
-        script. 
-            function mostrarFecha(idObra){
-
-                const card = document.getElementById(`card-${idObra}`);
-                if(card){
-                    const date = document.getElementById(`fecha-${idObra}`)
-                    const objectDate = card.getAttribute('datosFecha');
-                    if( objectDate != "" || objectDate != null){
-                        date.innerHTML =`${objectDate}` 
-                        date.style.display = 'block';
-                    }
-                    else{
-                        date.innerHTML =`Fecha desconocida` 
-                        date.style.display = 'block';
-                    }   
-                }  
-            }
-
-            function ocultarFecha(idObra){
-                const date = document.getElementById(`fecha-${idObra}`);
-                if (date) {
-                    date.style.display = 'none';
-                }
-            }
+        
 
     

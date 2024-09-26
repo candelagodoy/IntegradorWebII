@@ -1,11 +1,11 @@
 const { Router } = require('express');
-const { test, busqueda,imagenesAdicionales,paginado } = require('../controllers/home');
+const { index, busqueda,imagenesAdicionales,paginado } = require('../controllers/home');
 
 const router = Router();
 
 
 
-router.get('/', test)
+router.get('/', index)
 router.get('/paginado',paginado)
 router.get('/detalles/:id',imagenesAdicionales)
 
