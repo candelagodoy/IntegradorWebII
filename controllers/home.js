@@ -39,6 +39,7 @@ const selec = async (req,res) => {
             const data = await response.json();
             ids = Array.isArray(data.objectIDs) ? data.objectIDs.slice(0, 1000) : [];
 
+            console.log(ids)
             res.redirect('/paginado');
             
         }
