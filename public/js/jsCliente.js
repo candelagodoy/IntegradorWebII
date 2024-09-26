@@ -62,26 +62,4 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('form').onsubmit = validarCampos;
 });
 
- function mostrarFecha(idObra){
 
-    const card = document.getElementById(`card-${idObra}`);
-    if(card){
-        const date = document.getElementById(`fecha-${idObra}`)
-        const objectDate = card.getAttribute('datosFecha');
-            if( objectDate != "" || objectDate != null){
-                date.innerHTML =`${objectDate}` 
-                date.style.display = 'block';
-            }
-            else{
-                date.innerHTML =`Fecha desconocida` 
-                date.style.display = 'block';
-            }   
-        }  
-}
-
- function ocultarFecha(idObra){
-    const date = document.getElementById(`fecha-${idObra}`);
-    if (date) {
-        date.style.display = 'none';
-    }
-}
