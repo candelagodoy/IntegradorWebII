@@ -7,17 +7,16 @@ html
         link(href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Castoro+Titling&family=Sansita+Swashed:wght@300..900&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet")
         link(href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Castoro+Titling&family=Sansita+Swashed:wght@300..900&family=Stint+Ultra+Expanded&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet")
 
-
         link(rel="stylesheet", href="/style.css")
-     
+        script(src="/js/jsCliente.js") 
     body 
     div(class="container")
         div(class="formulario")
             header 
                 h1.archivo-black-regular The Metropolitan Museum of Art
-            form.stint-ultra-expanded-regular(action="/submit" method="POST" id="form")
+            form.stint-ultra-expanded-regular(action="/submit" method="POST" id="form" onsubmit="validarCampos(event)")
                 label(for="keyword") Palabra clave:
-                input(type="text" name="keyword" id="keyword" value=palabraClave)
+                input(type="text" name="keyword" id="keyword")
                 label(for="departments") Departamentos: 
                 select(name="departments" id="departments") 
                     option(value="")
@@ -27,6 +26,12 @@ html
                 label(for="location") Ubicacion: 
                 input(type="text", name="location" id="location") 
                 button.archivo-black-regular(type="submit" id="mybutton") Enviar
+                ul(class = "error" id="listaErrores")
+                ul(class = "mensajes" id="listaMensajes")
+
+
+            
+
         
         div(class="grilla") 
            each datosObra in detallesObras
@@ -50,6 +55,8 @@ html
                 a(href=`/paginado?page=${i + 1}`) #{i + 1}
             if currentPage < totalPages
                 a(href=`/paginado?page=${currentPage + 1}`) Siguiente
+
+                
         script. 
             function mostrarFecha(idObra){
 
@@ -74,3 +81,5 @@ html
                     date.style.display = 'none';
                 }
             }
+
+    

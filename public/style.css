@@ -136,4 +136,14 @@ img {
     height:auto;
     
 }
-  
+
+.error{
+    border-color: red;
+    background-color:rgb(235, 183, 183);
+
+}
+
+.listaErrores{
+    color: rgb(83, 85, 88);
+    background-color: transparent;
+}
