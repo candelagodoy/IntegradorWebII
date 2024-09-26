@@ -88,6 +88,8 @@ body{
     max-width: 250px;
     margin: 20px;
     text-align: center;
+    position: relative; 
+
 }
 
 .sansita-swashed-cards {
@@ -126,9 +128,10 @@ img {
     border-radius: 10px;
     background-color: rgba(233, 229, 229, 0.938) ;
     color :rgb(78, 78, 78);
-    border-style: solid;  
+    border-style: solid; 
 
 }
+
 
 .bAdicionales{
     background-color: rgba(0, 0, 0, 0.1) ;
