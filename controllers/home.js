@@ -68,12 +68,10 @@ const selec = async (req,res) => {
 
     const imagenesAdicionales = async (req,res) => {
         const id = req.params.id;
-        console.log(id);
-        console.log(URL_OBJETO + id)
-         const response = await fetch(URL_OBJETO + id);
+       
+        const response = await fetch(URL_OBJETO + id);
          
         const data =  await response.json();
-        console.log(data);
         const imagenesAd = data.additionalImages;
         
         res.render('../views/additionalImages.pug', {imagenesAd}) 
