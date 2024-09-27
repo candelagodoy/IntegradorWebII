@@ -13,7 +13,7 @@ html
         div(class="container")
             div(class="formulario")
                 header 
-                    h1.archivo-black-regular The Metropolitan Museum of Art
+                    h1.archivo-black-regular MUSEO METROPOLITANO DE ARTE
                 form.stint-ultra-expanded-regular(action="/submit" method="POST" id="form" onsubmit="validarCampos(event)")
                     label(for="keyword") Palabra clave:
                     input(type="text" name="keyword" id="keyword" placeholder="Ej: flowers")
@@ -42,8 +42,8 @@ html
                             h2.sansita-swashed-cards(id="titulo")= datosObra.title || 'Sin título'
                             p(class= "fecha" id=`fecha-${datosObra.objectID}`) 
                             img(src=datosObra.primaryImageSmall || '/images/sinImagen.png', alt="" id="imagenCard")
-                            h4.stint-ultra-expanded-regular(id="cultura")= datosObra.culture || 'No posee cultura'
-                            h4.stint-ultra-expanded-regular(id="dinastias")= datosObra.dynasty || 'No posee dinastía'
+                            h4.stint-ultra-expanded-regular(id="cultura")= datosObra.culture || 'Cultura desconocida'
+                            h4.stint-ultra-expanded-regular(id="dinastias")= datosObra.dynasty || 'Dinastía desconocida'
                             if datosObra.additionalImages && datosObra.additionalImages.length != 0
                                 button.archivo-black-regular(class="bAdicionales" onclick=`window.location.href=window.location.origin + '/detalles/${datosObra.objectID}'`) Ver imagen adicional
                 else

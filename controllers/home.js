@@ -32,8 +32,6 @@ const selec = async (req,res) => {
             const paramQ = palabraClave != "" ? `?q=${palabraClave}`: `?q=''` 
             const paramDepartamento = departamento != "" ? `&departmentId=${departamento}` : ""
 
-            console.log(URL_SEACH+`${paramQ}${paramDepartamento}${paramLocalizacion}`);
-
             const response = await fetch(URL_SEACH+`${paramQ}${paramDepartamento}${paramLocalizacion}`);
             const data = await response.json();
             ids = Array.isArray(data.objectIDs) ? data.objectIDs.slice(0, 1000) : [];
