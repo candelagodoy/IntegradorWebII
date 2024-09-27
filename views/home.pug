@@ -16,7 +16,7 @@ html
                     h1.archivo-black-regular The Metropolitan Museum of Art
                 form.stint-ultra-expanded-regular(action="/submit" method="POST" id="form" onsubmit="validarCampos(event)")
                     label(for="keyword") Palabra clave:
-                    input(type="text" name="keyword" id="keyword")
+                    input(type="text" name="keyword" id="keyword" placeholder="Ej: flowers")
                     label(for="departments") Departamentos: 
                     select(name="departments" id="departments") 
                         option(value="")
@@ -24,25 +24,30 @@ html
                             option(value=department.departmentId) #{department.displayName}
 
                     label(for="location") Ubicacion: 
-                    input(type="text", name="location" id="location") 
+                    input(type="text", name="location" id="location" placeholder="Ej: China") 
                     button.archivo-black-regular(type="submit" id="mybutton") Enviar
                     ul(class = "error" id="listaErrores")
-                    ul(class = "mensajes" id="listaMensajes")
+                    
         
             div(class="grilla") 
-                each datosObra in detallesObras
-                    div(class="card" 
-                    id=`card-${datosObra.objectID}` 
-                    datosFecha=datosObra.objectDate 
-                    onmouseover=`mostrarFecha(${datosObra.objectID})` 
-                    onmouseout=`ocultarFecha(${datosObra.objectID})`)
-                        h2.sansita-swashed-cards(id="titulo")= datosObra.title || 'Sin título'
-                        p(class= "fecha" id=`fecha-${datosObra.objectID}`) 
-                        img(src=datosObra.primaryImageSmall || '/images/sinImagen.png', alt="" id="imagenCard")
-                        h4.stint-ultra-expanded-regular(id="cultura")= datosObra.culture || 'No posee cultura'
-                        h4.stint-ultra-expanded-regular(id="dinastias")= datosObra.dynasty || 'No posee dinastía'
-                        if datosObra.additionalImages && datosObra.additionalImages.length != 0
-                            button.archivo-black-regular(class="bAdicionales" onclick=`window.location.href=window.location.origin + '/detalles/${datosObra.objectID}'`) Ver imagen adicional
+                if detallesObras === 'undefined' || detallesObras === null
+                    p ""
+                else if detallesObras.length != 0
+                    each datosObra in detallesObras
+                        div(class="card" 
+                        id=`card-${datosObra.objectID}` 
+                        datosFecha=datosObra.objectDate 
+                        onmouseover=`mostrarFecha(${datosObra.objectID})` 
+                        onmouseout=`ocultarFecha(${datosObra.objectID})`)
+                            h2.sansita-swashed-cards(id="titulo")= datosObra.title || 'Sin título'
+                            p(class= "fecha" id=`fecha-${datosObra.objectID}`) 
+                            img(src=datosObra.primaryImageSmall || '/images/sinImagen.png', alt="" id="imagenCard")
+                            h4.stint-ultra-expanded-regular(id="cultura")= datosObra.culture || 'No posee cultura'
+                            h4.stint-ultra-expanded-regular(id="dinastias")= datosObra.dynasty || 'No posee dinastía'
+                            if datosObra.additionalImages && datosObra.additionalImages.length != 0
+                                button.archivo-black-regular(class="bAdicionales" onclick=`window.location.href=window.location.origin + '/detalles/${datosObra.objectID}'`) Ver imagen adicional
+                else
+                    p.archivo-black-regular(class="sinExito") LA BUSQUEDA NO ARROJÓ RESULTADOS
 
             div(class="paginacion")
                 if currentPage > 1

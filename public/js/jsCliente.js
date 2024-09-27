@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const departamento = document.getElementById("departments");
     const localizacion = document.getElementById("location");
     let lerr = document.getElementById("listaErrores");
-    //let lmen = document.getElementById("listaMensajes");
 
     const validarCampos = (event)=>{
         event.preventDefault();
@@ -34,17 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 localizacion.classList.add('error');
             }
         }
-
-        let exReg=/^[a-zA-Z]+$/;
-
-        if(!exReg.test(pClave) && pClave.length !=""){
-            errores.push("Sólo debe contener letras");
-            if (palabraClave) {
-                palabraClave.classList.add('error');
-            }
-        }
-
-        
 
 
         if (errores.length > 0) {

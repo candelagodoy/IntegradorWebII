@@ -76,8 +76,7 @@ body{
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
     gap: 20px; 
-    padding: 20px; 
-    
+    padding: 20px;  
 }
 
 .card {
@@ -132,6 +131,11 @@ img {
 
 }
 
+.sinExito{
+    color:rgb(83, 85, 88); 
+    text-align: center;
+    
+}
 
 .bAdicionales{
     background-color: rgba(0, 0, 0, 0.1) ;

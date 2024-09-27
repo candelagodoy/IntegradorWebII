@@ -12,7 +12,6 @@ const selec = async (req,res) => {
         const response = await fetch (`${URL}/departments`)
         const data = await response.json() 
         return data.departments ? data.departments : []
-        res.render('../views/home.pug', { departments: data.departments ? data.departments : []});
     }
     catch(error){
         return []
@@ -39,7 +38,6 @@ const selec = async (req,res) => {
             const data = await response.json();
             ids = Array.isArray(data.objectIDs) ? data.objectIDs.slice(0, 1000) : [];
 
-            console.log(ids)
             res.redirect('/paginado');
             
         }
@@ -116,8 +114,6 @@ const selec = async (req,res) => {
         res.render('../views/home.pug', {departments, detallesObras:productosTraducidos, currentPage, totalPages: Math.ceil(ids.length / objectsPerPage) });
 
 } 
-
-
 
  const index = async (req, res) => {
        const departments = await selec();
